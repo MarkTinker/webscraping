@@ -303,65 +303,135 @@ switch ($action) {
                         
                 $arr_objetos=$arr_pag[0];
                 $_pagi_navegacion=$arr_pag[1];
-                foreach ($arr_objetos as $obj) {
+
+				
+				$cururl = $arr_objetos[0]->url;
+				$curmax1 = 0;
+				$curmax2 = 0;
+				$curmax3 = 0;
+				$curmax4 = 0;
+				$curmax5 = 0;
+				$curmax6 = 0;
+                foreach ($arr_objetos as $key => $obj) {
+					
+					if($cururl != $obj->url)
+					{
+						echo '
+				
+						<tr role="row">
+							<td>'.$cururl.'</td>
+							<td>'.'_'.'</td>
+							<td>'.$curmax6.'</td>
+							<td>'.$curmax5.'</td>
+							<td>'.$curmax4.'</td>
+							<td>'.$curmax3.'</td>
+							<td>'.$curmax2.'</td>
+							<td>'.$curmax1.'</td>
+
+							<td nowrap="nowrap" width="20">
+								<div class="btn-group">
+									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+																Actions
+																<span class="caret"></span>
+															</button>
+									<ul class="dropdown-menu" role="menu">
+										<li>
+											<a href="admin_yarns.php?action=edit&idyarns='.$obj->idyarns.'">
+																		Edit
+																	</a>
+										</li>
+										<li>
+											<a href="admin_yarns.php?action=delete&idyarns='.$obj->idyarns.'">
+																		Delete
+																	</a>
+										</li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+						';
+
+						$cururl = $obj->url;
+						$curmax1 = 0;
+						$curmax2 = 0;
+						$curmax3 = 0;
+						$curmax4 = 0;
+						$curmax5 = 0;
+						$curmax6 = 0;
+					}
                     $max1=$obj->max1;
                     $max2=$obj->max2;
                     $max3=$obj->max3;
                     $max4=$obj->max4;
                     $max5=$obj->max5;
                     $max6=$obj->max6;
+
+					
+
                     if ($max1==-1) {
-                        $max1='-';
+                        $max1='0';
                     }
                     if ($max2==-1) {
-                        $max2='-';
+                        $max2='0';
                     }
                     if ($max3==-1) {
-                        $max3='-';
+                        $max3='0';
                     }
                     if ($max4==-1) {
-                        $max4='-';
+                        $max4='0';
                     }
                     if ($max5==-1) {
-                        $max5='-';
+                        $max5='0';
                     }
                     if ($max6==-1) {
-                        $max6='-';
+                        $max6='0';
                     }
-                    echo '
+
+					$curmax1 += $max1;
+					$curmax2 += $max2;
+					$curmax3 += $max3;
+					$curmax4 += $max4;
+					$curmax5 += $max5;
+					$curmax6 += $max6;
+					
+                    
+                }
+
+				echo '
 				
-				<tr role="row"><td>'.$obj->url.'</td>
-<td>'.$obj->name.'</td>
-<td>'.$max6.'</td>
-<td>'.$max5.'</td>
-<td>'.$max4.'</td>
-<td>'.$max3.'</td>
-<td>'.$max2.'</td>
-<td>'.$max1.'</td>
+						<tr role="row">
+							<td>'.$cururl.'</td>
+							<td>'.'_'.'</td>
+							<td>'.$curmax6.'</td>
+							<td>'.$curmax5.'</td>
+							<td>'.$curmax4.'</td>
+							<td>'.$curmax3.'</td>
+							<td>'.$curmax2.'</td>
+							<td>'.$curmax1.'</td>
 
 							<td nowrap="nowrap" width="20">
 								<div class="btn-group">
 									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-										Actions
-										<span class="caret"></span>
-									</button>            
+																Actions
+																<span class="caret"></span>
+															</button>
 									<ul class="dropdown-menu" role="menu">
 										<li>
 											<a href="admin_yarns.php?action=edit&idyarns='.$obj->idyarns.'">
-												Edit
-											</a>
+																		Edit
+																	</a>
 										</li>
 										<li>
 											<a href="admin_yarns.php?action=delete&idyarns='.$obj->idyarns.'">
-												Delete
-											</a>
+																		Delete
+																	</a>
 										</li>
 									</ul>
 								</div>
 							</td>
-		   </tr>
-';
-                }
+						</tr>
+						';
+						
                 echo '</tbody>
 				</table>
 			<table border="0" align="center" cellpadding="0" cellspacing="0">
