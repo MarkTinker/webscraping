@@ -1,0 +1,239 @@
+body {
+	margin:0 0 0 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+form, div, ul, li, span{
+	margin:0 0 0 0;
+	padding:0 0 0 0;
+}
+
+th a{
+	color:#000000;
+	text-decoration:underline;
+}
+
+th a:hover{
+	text-decoration:none;
+}
+
+.header{
+	width:100%;
+	height:120px;
+	background-image:url(imagenes/bg.jpg);
+	background-repeat:repeat-x;
+}
+
+.logo{
+	width:230px;
+	height:120px;
+	float:left;
+}
+
+.site_name{
+	width:auto;
+	float:left;
+	padding-top:70px;
+	color:#333333;
+	font-size:16px;
+	font-weight:bold;
+	padding-left:40px;
+}
+
+.session{
+	float:right;
+	padding-top:80px;
+	padding-right:20px;
+	font-size:11px;
+	color:#333333;
+}
+
+.session a{
+	font-size:11px;
+	color: #990000;
+	text-decoration:underline;
+}
+
+.session a:hover{
+	text-decoration:none;
+}
+
+.leftCol{
+	width:200px;
+	background-color:#333333;
+	color:#FFFFFF;
+	font-size:11px;
+	border-top:#CCCCCC solid 1px;
+	min-height:400px;
+}
+
+.leftCol ul{
+	width:100%;
+}
+
+.leftCol ul li{
+	padding: 5px 0 5px 6px;
+	border-bottom:#CCCCCC solid 1px;
+	cursor:pointer;
+	width:193px;
+}
+
+.menu_principal{
+	background:#333333;
+}
+	
+.menu_principal_over{
+	background:#990000;
+}
+
+.encuentra_en{
+	color:#FFFFFF;
+	font-size:11px;
+	padding-right:20px;
+}
+
+.texto11 {
+	font-size: 11px;
+	color: #333333;
+}
+.texto12 {
+	font-size: 12px;
+	color: #333333;
+}
+
+.textobold {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+	text-align: justify;
+	font-weight: bold;
+}
+.texto2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #ffffff;
+	text-decoration: none;
+
+}
+
+.tabla_resultados{
+	background-color: #F4F4F4;
+	border-left: #CCC solid 1px;
+	border-top: #CCC solid 1px;
+	border-right: #CCC solid 1px;
+}
+
+.tabla_resultados td{
+}
+
+.tabla_titulo{
+	background-color:#CCC;
+	color:#333;
+	border:0px;
+	padding:5px 10px 5px 10px;
+	font-weight:bold;
+}
+
+.tabla_botones{
+	background-color:#CCC;
+	border:0px;
+	padding:3px 10px 3px 3px;
+}
+
+
+.desc {
+	font-size: 11px;
+	color: #333333;
+	padding:3px 3px 0 10px;
+	border-bottom: #CCC solid 1px;
+	width:180px;
+	font-weight:bold;
+}
+
+.descRow {
+	font-size: 11px;
+	color: #333333;
+	padding:6px 3px 6px 10px;
+	border-bottom: #CCC solid 1px;
+	font-weight:bold;
+}
+
+.descRED {
+	font-size: 11px;
+	color: #FF0000;
+	padding:3px 3px 0 10px;
+	border-bottom: #CCC solid 1px;
+	width:180px;
+	font-weight:bold;
+}
+
+.campo {
+	padding:6px 10px 6px 6px;
+	border-bottom: #CCC solid 1px;
+	font-size:11px;
+}
+
+.notaCampo {
+	font-size: 10px;
+	color: #666666;
+	padding:3px 3px 0 0px;
+	font-weight:bold;
+}
+
+.listado_blanco{
+	background-color: #FFFFFF;
+	border-left: #CCC solid 1px;
+	border-top: #CCC solid 1px;
+	border-right: #CCC solid 1px;
+}
+
+.listado_gris{
+	background-color: #F4F4F4;
+	border-left: #CCC solid 1px;
+	border-top: #CCC solid 1px;
+	border-right: #CCC solid 1px;
+}
+
+.titulos {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+
+}
+.form {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666666;
+	background-color: #ffffff;
+	border: 1px solid #999999;
+}
+.form2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	background-color: #999999;
+	border: 1px solid #666666;
+}
+
+.principio{
+	margin:0 0 0 0;
+	padding:0px 0 0px 10px;
+	color:#990000;
+}
+.BG2 {
+	padding-top:14px;
+	font-size: 16px;
+	font-weight: bold;
+	color: orange;
+	text-decoration: none;
+	text-align:center;
+	background-repeat:no-repeat;
+	padding-bottom: 18px;
+	text-transform: uppercase;
+}
