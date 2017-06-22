@@ -1,95 +1,86 @@
-<?php
-    session_start();
-function __autoload($class_name)
-{
-    require_once "class/class.".strtolower($class_name) . '.php';
-}
-    $action=$_REQUEST['action'];
-switch ($action) {
-    case "add":
-        $url=$_REQUEST["url"];
-        $name=$_REQUEST["name"];
-        $max1=$_REQUEST["max1"];
-        $max2=$_REQUEST["max2"];
-        $max3=$_REQUEST["max3"];
-        $max4=$_REQUEST["max4"];
-        $max5=$_REQUEST["max5"];
-        $max6=$_REQUEST["max6"];
-		$max7=$_REQUEST["max7"];
-		$max8=$_REQUEST["max8"];
-        $obj=new yarns();
-        $obj->url=$url;
-        $obj->name=$name;
-        $obj->max1=$max1;
-        $obj->max2=$max2;
-        $obj->max3=$max3;
-        $obj->max4=$max4;
-        $obj->max5=$max5;
-        $obj->max6=$max6;
-        $obj->insert();
-        header('location:admin_yarns.php');
-        exit;
-    break;
-    case "save":
-        $idyarns=$_REQUEST["idyarns"];
-        $url=$_REQUEST["url"];
-        $name=$_REQUEST["name"];
-        $max1=$_REQUEST["max1"];
-        $max2=$_REQUEST["max2"];
-        $max3=$_REQUEST["max3"];
-        $max4=$_REQUEST["max4"];
-        $max5=$_REQUEST["max5"];
-        $max6=$_REQUEST["max6"];
-		$max7=$_REQUEST["max7"];
-		$max8=$_REQUEST["max8"];
-        $obj=new yarns($idyarns);
-        $obj->url=$url;
-        $obj->name=$name;
-        $obj->max1=$max1;
-        $obj->max2=$max2;
-        $obj->max3=$max3;
-        $obj->max4=$max4;
-        $obj->max5=$max5;
-        $obj->max6=$max6;
-		$obj->max7=$max7;
-		$obj->max8=$max8;
-        $obj->update();
-        header('location:admin_yarns.php');
-        exit;
-    break;
-    case "delete":
-        $idyarns=$_REQUEST["idyarns"];
-        $obj=new yarns($idyarns);
-        $obj->delete();
-        header('location:admin_yarns.php');
-        exit;
-    break;
-    case "empty":
-        $obj=yarns::deleteall();
-        header('location:admin_yarns.php');
-        exit;
-    break;
-    case "edit":
-        $idyarns=$_REQUEST["idyarns"];
-        $obj=new yarns($idyarns);
-        $url=$obj->url;
-        $name=$obj->name;
-        $max1=$obj->max1;
-        $max2=$obj->max2;
-        $max3=$obj->max3;
-        $max4=$obj->max4;
-        $max5=$obj->max5;
-        $max6=$obj->max6;
-		$max7=$obj->max7;
-		$max8=$obj->max8;
-        break;
-    default:
-        break;
-}
+<?php 
+	session_start();
+	function __autoload($class_name) {
+		require_once "class/class.".strtolower($class_name) . '.php';
+	}
+	$action=$_REQUEST['action'];
+	switch($action){
+		case "add":
+			$url=$_REQUEST["url"];
+			$name=$_REQUEST["name"];
+			$max1=$_REQUEST["max1"];
+			$max2=$_REQUEST["max2"];
+			$max3=$_REQUEST["max3"];
+			$max4=$_REQUEST["max4"];
+			$max5=$_REQUEST["max5"];
+			$max6=$_REQUEST["max6"];
+			$obj=new yarns();
+			$obj->url=$url;
+			$obj->name=$name;
+			$obj->max1=$max1;
+			$obj->max2=$max2;
+			$obj->max3=$max3;
+			$obj->max4=$max4;
+			$obj->max5=$max5;
+			$obj->max6=$max6;
+			$obj->insert();
+			header('location:admin_yarns.php');
+			exit;
+			break;
+		case "save":
+			$idyarns=$_REQUEST["idyarns"];
+			$url=$_REQUEST["url"];
+			$name=$_REQUEST["name"];
+			$max1=$_REQUEST["max1"];
+			$max2=$_REQUEST["max2"];
+			$max3=$_REQUEST["max3"];
+			$max4=$_REQUEST["max4"];
+			$max5=$_REQUEST["max5"];
+			$max6=$_REQUEST["max6"];
+			$obj=new yarns($idyarns);
+			$obj->url=$url;
+			$obj->name=$name;
+			$obj->max1=$max1;
+			$obj->max2=$max2;
+			$obj->max3=$max3;
+			$obj->max4=$max4;
+			$obj->max5=$max5;
+			$obj->max6=$max6;
+			$obj->update();
+			header('location:admin_yarns.php');
+			exit;
+			break;
+		case "delete":
+			$idyarns=$_REQUEST["idyarns"];
+			$obj=new yarns($idyarns);
+			$obj->delete();
+			header('location:admin_yarns.php');
+			exit;
+			break;
+		case "empty":
+			$obj=yarns::deleteall();
+			header('location:admin_yarns.php');
+			exit;
+			break;
+		case "edit":
+			$idyarns=$_REQUEST["idyarns"];
+			$obj=new yarns($idyarns);
+			$url=$obj->url;
+			$name=$obj->name;
+			$max1=$obj->max1;
+			$max2=$obj->max2;
+			$max3=$obj->max3;
+			$max4=$obj->max4;
+			$max5=$obj->max5;
+			$max6=$obj->max6;
+			break;
+		default:
+			break;
+	}	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
-    <head>
+	<head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <title>elbruninh</title>
@@ -126,7 +117,7 @@ switch ($action) {
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="navbar-inverse navbar-userfrosting sidebar" role="navigation">
-                        <?php include("includes/menu.php");?>
+						<?php include("includes/menu.php");?>
                     </div>
                     <!-- /.navbar-static-side -->        
                 </div>
@@ -135,12 +126,12 @@ switch ($action) {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-primary">
-            
-            
-        <?php
-        switch ($action) {
-            case "new":
-                echo '        
+			
+			
+		<?php
+	switch($action){
+		case "new":
+			echo '        
                             <div class="panel-heading">
                                 <h3 class="panel-title"> New yarns</h3>
                             </div>
@@ -192,16 +183,6 @@ switch ($action) {
 										  <input name="max6" type="text" class="form" value="'.$max6.'" >*</td>
 										</tr>
 										<tr>
-										  <td>max42</td>
-										  <td>
-										  <input name="max6" type="text" class="form" value="'.$max7.'" >*</td>
-										</tr>
-										<tr>
-										  <td>max48</td>
-										  <td>
-										  <input name="max6" type="text" class="form" value="'.$max8.'" >*</td>
-										</tr>
-										<tr>
 											<td colspan="2" align="center">
 											<input type="submit"  name="guardar" id="guardar" value="Submit" /> <input type="button" id="button4" value="Cancel" onclick="window.location.href=\'admin_yarns.php\'"/>
 											</td>
@@ -212,9 +193,9 @@ switch ($action) {
           
                             </div>
 ';
-                break;
-            case "edit":
-                echo '        
+			break;
+		case "edit":
+			echo '        
                             <div class="panel-heading">
                                 <h3 class="panel-title"> Edit yarns</h3>
                             </div>
@@ -267,16 +248,6 @@ switch ($action) {
 											<input name="max6" type="text" class="form" value="'.$max6.'" >*</td>
 										</tr>
 										<tr>
-											<td class="desc">max7</td>
-											<td class="campo">
-											<input name="max7" type="text" class="form" value="'.$max7.'" >*</td>
-										</tr>
-										<tr>
-											<td class="desc">max8</td>
-											<td class="campo">
-											<input name="max8" type="text" class="form" value="'.$max8.'" >*</td>
-										</tr>
-										<tr>
 											<td colspan="2" class="tabla_botones" align="center">
 											<input type="submit"  name="guardar" id="guardar" value="Submit" /> <input type="button" id="button4" value="Cancel" onclick="window.location.href=\'admin_yarns.php\'"/>
 											</td>
@@ -286,9 +257,9 @@ switch ($action) {
 							</form>
 							</div>
 ';
-                break;
-            default:
-                echo '
+			break;
+		default:
+			echo '
                             <div class="panel-heading">
                                 <h3 class="panel-title">yarns</h3>
                             </div>
@@ -322,165 +293,75 @@ switch ($action) {
 					<th class="tabla_titulo" nowrap="nowrap">max24</th>
 					<th class="tabla_titulo" nowrap="nowrap">max30</th>
 					<th class="tabla_titulo" nowrap="nowrap">max36</th>
-					<th class="tabla_titulo" nowrap="nowrap">max42</th>
-					<th class="tabla_titulo" nowrap="nowrap">max48</th>
 					<th nowrap="nowrap">Actions</th>
 									</tr>
 								</thead><tbody aria-relevant="all" aria-live="polite">';
-            
-                $where="";
-                $arr_pag=yarns::selectarray_paginacion($where, 5000);
-                        
-                $arr_objetos=$arr_pag[0];
-                $_pagi_navegacion=$arr_pag[1];
-
-				
-				$cururl = $arr_objetos[0]->url;
-				$curmax1 = 0;
-				$curmax2 = 0;
-				$curmax3 = 0;
-				$curmax4 = 0;
-				$curmax5 = 0;
-				$curmax6 = 0;
-				$curmax7 = 0;
-				$curmax8 = 0;
-                foreach ($arr_objetos as $key => $obj) {
-					
-					if($cururl != $obj->url)
-					{
-						echo '
-				
-						<tr role="row">
-							<td>'.$cururl.'</td>
-							<td>'.'_'.'</td>
-							<td>'.$curmax8.'</td>
-							<td>'.$curmax7.'</td>
-							<td>'.$curmax6.'</td>
-							<td>'.$curmax5.'</td>
-							<td>'.$curmax4.'</td>
-							<td>'.$curmax3.'</td>
-							<td>'.$curmax2.'</td>
-							<td>'.$curmax1.'</td>
-
-							<td nowrap="nowrap" width="20">
-								<div class="btn-group">
-									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-																Actions
-																<span class="caret"></span>
-															</button>
-									<ul class="dropdown-menu" role="menu">
-										<li>
-											<a href="admin_yarns.php?action=edit&idyarns='.$obj->idyarns.'">
-																		Edit
-																	</a>
-										</li>
-										<li>
-											<a href="admin_yarns.php?action=delete&idyarns='.$obj->idyarns.'">
-																		Delete
-																	</a>
-										</li>
-									</ul>
-								</div>
-							</td>
-						</tr>
-						';
-
-						$cururl = $obj->url;
-						$curmax1 = 0;
-						$curmax2 = 0;
-						$curmax3 = 0;
-						$curmax4 = 0;
-						$curmax5 = 0;
-						$curmax6 = 0;
-						$curmax7 = 0;
-						$curmax8 = 0;
-					}
-                    $max1=$obj->max1;
-                    $max2=$obj->max2;
-                    $max3=$obj->max3;
-                    $max4=$obj->max4;
-                    $max5=$obj->max5;
-                    $max6=$obj->max6;
-					$max7=$obj->max7;
-					$max8=$obj->max8;
-
-					
-
-                    if ($max1==-1) {
-                        $max1='0';
-                    }
-                    if ($max2==-1) {
-                        $max2='0';
-                    }
-                    if ($max3==-1) {
-                        $max3='0';
-                    }
-                    if ($max4==-1) {
-                        $max4='0';
-                    }
-                    if ($max5==-1) {
-                        $max5='0';
-                    }
-                    if ($max6==-1) {
-                        $max6='0';
-                    }
-					if ($max7==-1) {
-                        $max7='0';
-                    }
-					if ($max8==-1) {
-                        $max8='0';
-                    }
-
-					$curmax1 += $max1;
-					$curmax2 += $max2;
-					$curmax3 += $max3;
-					$curmax4 += $max4;
-					$curmax5 += $max5;
-					$curmax6 += $max6;
-					$curmax7 += $max7;
-					$curmax8 += $max8;
-					
-                    
-                }
-
+			
+			$where="";
+			$arr_pag=yarns::selectarray_paginacion($where,5000);
+						
+			$arr_objetos=$arr_pag[0];
+			$_pagi_navegacion=$arr_pag[1];
+			foreach($arr_objetos as $obj){
+				$max1=$obj->max1;
+				$max2=$obj->max2;
+				$max3=$obj->max3;
+				$max4=$obj->max4;
+				$max5=$obj->max5;
+				$max6=$obj->max6;
+				if($max1==-1){
+					$max1='-';
+				}
+				if($max2==-1){
+					$max2='-';
+				}
+				if($max3==-1){
+					$max3='-';
+				}
+				if($max4==-1){
+					$max4='-';
+				}
+				if($max5==-1){
+					$max5='-';
+				}
+				if($max6==-1){
+					$max6='-';
+				}
 				echo '
 				
-						<tr role="row">
-							<td>'.$cururl.'</td>
-							<td>'.'_'.'</td>
-							<td>'.$curmax8.'</td>
-							<td>'.$curmax7.'</td>
-							<td>'.$curmax6.'</td>
-							<td>'.$curmax5.'</td>
-							<td>'.$curmax4.'</td>
-							<td>'.$curmax3.'</td>
-							<td>'.$curmax2.'</td>
-							<td>'.$curmax1.'</td>
+				<tr role="row"><td>'.$obj->url.'</td>
+<td>'.$obj->name.'</td>
+<td>'.$max6.'</td>
+<td>'.$max5.'</td>
+<td>'.$max4.'</td>
+<td>'.$max3.'</td>
+<td>'.$max2.'</td>
+<td>'.$max1.'</td>
 
 							<td nowrap="nowrap" width="20">
 								<div class="btn-group">
 									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-																Actions
-																<span class="caret"></span>
-															</button>
+										Actions
+										<span class="caret"></span>
+									</button>            
 									<ul class="dropdown-menu" role="menu">
 										<li>
 											<a href="admin_yarns.php?action=edit&idyarns='.$obj->idyarns.'">
-																		Edit
-																	</a>
+												Edit
+											</a>
 										</li>
 										<li>
 											<a href="admin_yarns.php?action=delete&idyarns='.$obj->idyarns.'">
-																		Delete
-																	</a>
+												Delete
+											</a>
 										</li>
 									</ul>
 								</div>
 							</td>
-						</tr>
-						';
-						
-                echo '</tbody>
+		   </tr>
+';
+			}
+			echo '</tbody>
 				</table>
 			<table border="0" align="center" cellpadding="0" cellspacing="0">
 			<tr>
@@ -495,11 +376,11 @@ switch ($action) {
 
 
 ';
-                break;
-        }
-        
-    ?>
-    
+			break;
+	}	
+		
+	?>
+	
             
     
     

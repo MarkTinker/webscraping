@@ -150,16 +150,20 @@ class scrape {
 							$obj->max4=-1;
 							$obj->max5=-1;
 							$obj->max6=-1;
+							$obj->max7=-1;
+							$obj->max8=-1;
 							$obj->insert();
 						}else{
 							$obj=$count[0];
-							if($obj->max6!=-1){
+							if($obj->max8!=-1){
 								$obj->max1=$obj->max2;
 								$obj->max2=$obj->max3;
 								$obj->max3=$obj->max4;
 								$obj->max4=$obj->max5;
 								$obj->max5=$obj->max6;
-								$obj->max6=$max;
+								$obj->max6=$obj->max7;
+								$obj->max7=$obj->max8;
+								$obj->max8=$max;
 							}
 							if($obj->max1==-1){
 								$obj->max1=$max;
@@ -173,7 +177,10 @@ class scrape {
 								$obj->max5=$max;
 							}else if($obj->max6==-1){
 								$obj->max6=$max;
-							}
+							}else if($obj->max7==-1){
+								$obj->max7=$max;
+							}else if($obj->max8==-1){
+								$obj->max8=$max;
 							$obj->update();
 						}
 						
@@ -231,16 +238,20 @@ class scrape {
 								$obj->max4=-1;
 								$obj->max5=-1;
 								$obj->max6=-1;
+								$obj->max7=-1;
+								$obj->max8=-1;
 								$obj->insert();
 							}else{
 								$obj=$count[0];
-								if($obj->max6!=-1){
+								if($obj->max8!=-1){
 									$obj->max1=$obj->max2;
 									$obj->max2=$obj->max3;
 									$obj->max3=$obj->max4;
 									$obj->max4=$obj->max5;
 									$obj->max5=$obj->max6;
-									$obj->max6=$max;
+									$obj->max6=$obj->max7;
+									$obj->max7=$obj->max8;
+									$obj->max8=$max;
 								}
 								if($obj->max1==-1){
 									$obj->max1=$max;
@@ -254,6 +265,10 @@ class scrape {
 									$obj->max5=$max;
 								}else if($obj->max6==-1){
 									$obj->max6=$max;
+								}else if($obj->max7==-1){
+									$obj->max7=$max;
+								}else if($obj->max8==-1){
+									$obj->max8=$max;
 								}
 								$obj->update();
 							}
