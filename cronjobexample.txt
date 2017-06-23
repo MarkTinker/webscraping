@@ -1,0 +1,1 @@
+/usr/local/bin/php /home/garniusno/public_html/yarns/scraper.php >/home/garniusno/public_html/yarns/output.csv 2>&1

@@ -9,4 +9,5 @@
 	
 	$scraper=new scrape();
 	$scraper->scraper($hours);
+	print_r('running');
 ?>

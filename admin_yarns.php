@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', '1');
     session_start();
 function __autoload($class_name)
 {
@@ -312,55 +313,74 @@ switch ($action) {
 								<table role="grid" class="tablesorter table table-bordered table-hover table-striped">
 
 
-';echo '
-								<thead>
-									<tr><th class="tabla_titulo" nowrap="nowrap">url</th>
-					<th class="tabla_titulo" nowrap="nowrap">name</th>
-					<th class="tabla_titulo" nowrap="nowrap">max6</th>
-					<th class="tabla_titulo" nowrap="nowrap">max12</th>
-					<th class="tabla_titulo" nowrap="nowrap">max18</th>
-					<th class="tabla_titulo" nowrap="nowrap">max24</th>
-					<th class="tabla_titulo" nowrap="nowrap">max30</th>
-					<th class="tabla_titulo" nowrap="nowrap">max36</th>
-					<th class="tabla_titulo" nowrap="nowrap">max42</th>
-					<th class="tabla_titulo" nowrap="nowrap">max48</th>
-					<th nowrap="nowrap">Actions</th>
-									</tr>
-								</thead><tbody aria-relevant="all" aria-live="polite">';
-            
+';
+				
                 $where="";
                 $arr_pag=yarns::selectarray_paginacion($where, 5000);
                         
                 $arr_objetos=$arr_pag[0];
                 $_pagi_navegacion=$arr_pag[1];
-
+				$dates=['Monday',' Tuesday','Wednesday', 'Thursday','Friday','Saturday', 'Sunday'];
 				
+				$ordereddates=[];
+				$curdate = $arr_objetos[0]->update_time;
+				$curdatekey = array_search($curdate, $dates);
+				$temp = 0;
+				while ($temp < 8)
+				{
+					$ordereddates[] = $dates[$curdatekey];
+					$curdatekey--;
+					if($curdatekey < 0)
+					{
+						$curdatekey = 6;
+					}
+					$temp++;					
+				}
+				$substracts=[];
+echo '
+								<thead>
+									<tr><th class="tabla_titulo" nowrap="nowrap">url</th>
+					<th class="tabla_titulo" nowrap="nowrap">name</th>					
+					<th class="tabla_titulo" nowrap="nowrap">'.$ordereddates[7].'(Past)</th>
+					<th class="tabla_titulo" nowrap="nowrap">'.$ordereddates[6].'</th>
+					<th class="tabla_titulo" nowrap="nowrap">'.$ordereddates[5].'</th>
+					<th class="tabla_titulo" nowrap="nowrap">'.$ordereddates[4].'</th>
+					<th class="tabla_titulo" nowrap="nowrap">'.$ordereddates[3].'</th>
+					<th class="tabla_titulo" nowrap="nowrap">'.$ordereddates[2].'</th>
+					<th class="tabla_titulo" nowrap="nowrap">'.$ordereddates[1].'</th>
+					<th class="tabla_titulo" nowrap="nowrap">'.$ordereddates[0].'(Now)</th>
+					<th nowrap="nowrap">Actions</th>
+									</tr>
+								</thead><tbody aria-relevant="all" aria-live="polite">';
+
 				$cururl = $arr_objetos[0]->url;
-				$curmax1 = 0;
-				$curmax2 = 0;
-				$curmax3 = 0;
-				$curmax4 = 0;
-				$curmax5 = 0;
-				$curmax6 = 0;
-				$curmax7 = 0;
-				$curmax8 = 0;
+				$curmax = [0, 0, 0, 0, 0, 0, 0, 0];
+				$totalmax =[0, 0, 0, 0, 0, 0, 0 ,0];
                 foreach ($arr_objetos as $key => $obj) {
 					
 					if($cururl != $obj->url)
 					{
+						$totalmax[0] += $curmax[0];
+						$totalmax[1] += $curmax[1];
+						$totalmax[2] += $curmax[2];
+						$totalmax[3] += $curmax[3];
+						$totalmax[4] += $curmax[4];
+						$totalmax[5] += $curmax[5];
+						$totalmax[6] += $curmax[6];
+						$totalmax[7] += $curmax[7];
 						echo '
 				
 						<tr role="row">
 							<td>'.$cururl.'</td>
 							<td>'.'_'.'</td>
-							<td>'.$curmax8.'</td>
-							<td>'.$curmax7.'</td>
-							<td>'.$curmax6.'</td>
-							<td>'.$curmax5.'</td>
-							<td>'.$curmax4.'</td>
-							<td>'.$curmax3.'</td>
-							<td>'.$curmax2.'</td>
-							<td>'.$curmax1.'</td>
+							<td>'.$curmax[0].'</td>
+							<td>'.$curmax[1].'('.($curmax[1]-$curmax[0]).')</td>
+							<td>'.$curmax[2].'('.($curmax[2]-$curmax[1]).')</td>
+							<td>'.$curmax[3].'('.($curmax[3]-$curmax[2]).')</td>
+							<td>'.$curmax[4].'('.($curmax[4]-$curmax[3]).')</td>
+							<td>'.$curmax[5].'('.($curmax[5]-$curmax[4]).')</td>
+							<td>'.$curmax[6].'('.($curmax[6]-$curmax[5]).')</td>
+							<td>'.$curmax[7].'('.($curmax[7]-$curmax[6]).')</td>
 
 							<td nowrap="nowrap" width="20">
 								<div class="btn-group">
@@ -386,14 +406,14 @@ switch ($action) {
 						';
 
 						$cururl = $obj->url;
-						$curmax1 = 0;
-						$curmax2 = 0;
-						$curmax3 = 0;
-						$curmax4 = 0;
-						$curmax5 = 0;
-						$curmax6 = 0;
-						$curmax7 = 0;
-						$curmax8 = 0;
+						$curmax[0]= 0; 
+						$curmax[1]= 0;
+						$curmax[2]= 0;
+						$curmax[3]= 0;
+						$curmax[4]= 0; 
+						$curmax[5]= 0; 
+						$curmax[6]= 0; 
+						$curmax[7]= 0;
 					}
                     $max1=$obj->max1;
                     $max2=$obj->max2;
@@ -431,31 +451,38 @@ switch ($action) {
                         $max8='0';
                     }
 
-					$curmax1 += $max1;
-					$curmax2 += $max2;
-					$curmax3 += $max3;
-					$curmax4 += $max4;
-					$curmax5 += $max5;
-					$curmax6 += $max6;
-					$curmax7 += $max7;
-					$curmax8 += $max8;
+					$curmax[0] += $max1;
+					$curmax[1] += $max2;
+					$curmax[2] += $max3;
+					$curmax[3] += $max4;
+					$curmax[4] += $max5;
+					$curmax[5] += $max6;
+					$curmax[6] += $max7;
+					$curmax[7] += $max8;
 					
                     
                 }
-
+				$totalmax[0] += $curmax[0];
+				$totalmax[1] += $curmax[1];
+				$totalmax[2] += $curmax[2];
+				$totalmax[3] += $curmax[3];
+				$totalmax[4] += $curmax[4];
+				$totalmax[5] += $curmax[5];
+				$totalmax[6] += $curmax[6];
+				$totalmax[7] += $curmax[7];
 				echo '
 				
 						<tr role="row">
 							<td>'.$cururl.'</td>
 							<td>'.'_'.'</td>
-							<td>'.$curmax8.'</td>
-							<td>'.$curmax7.'</td>
-							<td>'.$curmax6.'</td>
-							<td>'.$curmax5.'</td>
-							<td>'.$curmax4.'</td>
-							<td>'.$curmax3.'</td>
-							<td>'.$curmax2.'</td>
-							<td>'.$curmax1.'</td>
+							<td>'.$curmax[0].'</td>
+							<td>'.$curmax[1].'('.($curmax[1]-$curmax[0]).')</td>
+							<td>'.$curmax[2].'('.($curmax[2]-$curmax[1]).')</td>
+							<td>'.$curmax[3].'('.($curmax[3]-$curmax[2]).')</td>
+							<td>'.$curmax[4].'('.($curmax[4]-$curmax[3]).')</td>
+							<td>'.$curmax[5].'('.($curmax[5]-$curmax[4]).')</td>
+							<td>'.$curmax[6].'('.($curmax[6]-$curmax[5]).')</td>
+							<td>'.$curmax[7].'('.($curmax[7]-$curmax[6]).')</td>
 
 							<td nowrap="nowrap" width="20">
 								<div class="btn-group">
@@ -479,9 +506,22 @@ switch ($action) {
 							</td>
 						</tr>
 						';
-						
-                echo '</tbody>
-				</table>
+				echo '<tr role="row">
+						<td>Total</td>
+						<td>_</td>
+						<td>'.$totalmax[0].'</td>
+						<td>'.$totalmax[1].'('.($totalmax[1]-$totalmax[0]).')</td>
+						<td>'.$totalmax[2].'('.($totalmax[2]-$totalmax[1]).')</td>
+						<td>'.$totalmax[3].'('.($totalmax[3]-$totalmax[2]).')</td>
+						<td>'.$totalmax[4].'('.($totalmax[4]-$totalmax[3]).')</td>
+						<td>'.$totalmax[5].'('.($totalmax[5]-$totalmax[4]).')</td>
+						<td>'.$totalmax[6].'('.($totalmax[6]-$totalmax[5]).')</td>
+						<td>'.$totalmax[7].'('.($totalmax[7]-$totalmax[6]).')</td>
+					</tr>
+				';
+                echo '</tbody>';
+				
+				echo '</table>
 			<table border="0" align="center" cellpadding="0" cellspacing="0">
 			<tr>
 			   <td height="6"></td>
@@ -497,7 +537,7 @@ switch ($action) {
 ';
                 break;
         }
-        
+       
     ?>
     
             

@@ -94,6 +94,7 @@ class scrape {
 		return $r;
 	}
 	function scraper($hours){
+		echo('runA');
 		$urls=array();
 		$urls[]="https://strikkenett.no/produkt/garn/drops/drops-merino-extra-fine";
 		//$urls[]="https://strikkenett.no/produkt/garn/drops/drops-baby-merino";
@@ -140,6 +141,7 @@ class scrape {
 						
 						$where=" WHERE A.url='".$urlx."' AND A.name='".$name."' LIMIT 1";
 						$count=yarns::selectarray($where);
+						
 						if(count($count)==0){
 							$obj=new yarns();
 							$obj->url=$urlx;
@@ -152,6 +154,7 @@ class scrape {
 							$obj->max6=-1;
 							$obj->max7=-1;
 							$obj->max8=-1;
+							$obj->update_time = date("l");
 							$obj->insert();
 						}else{
 							$obj=$count[0];
@@ -178,9 +181,12 @@ class scrape {
 							}else if($obj->max6==-1){
 								$obj->max6=$max;
 							}else if($obj->max7==-1){
+								print_r($max.' '. $obj->max7.' '.$obj->max1);
 								$obj->max7=$max;
 							}else if($obj->max8==-1){
 								$obj->max8=$max;
+							}
+							$obj->update_time = date("l");
 							$obj->update();
 						}
 						
@@ -240,6 +246,7 @@ class scrape {
 								$obj->max6=-1;
 								$obj->max7=-1;
 								$obj->max8=-1;
+								$obj->update_time = date("l");
 								$obj->insert();
 							}else{
 								$obj=$count[0];
@@ -270,6 +277,7 @@ class scrape {
 								}else if($obj->max8==-1){
 									$obj->max8=$max;
 								}
+								$obj->update_time = date("l");								
 								$obj->update();
 							}
 							//exit;

@@ -59,6 +59,7 @@ class base_yarns extends Base {
 	public $max6="-1";
 	public $max7="-1";
 	public $max8="-1";
+	public $update_time="";
 	public function __construct($idyarns=""){
 		if($idyarns!=""){
 			$this->idyarns=$idyarns;
@@ -67,10 +68,10 @@ class base_yarns extends Base {
 	}
 	public function select(){
 		$consulta=new Consulta();
-		$sql="SELECT idyarns,url,name,max1,max2,max3,max4,max5,max6,max7,max8 FROM yarns WHERE idyarns = '".mysql_real_escape_string($this->idyarns)."'";
+		$sql="SELECT idyarns,url,name,max1,max2,max3,max4,max5,max6,max7,max8,update_time FROM yarns WHERE idyarns = '".mysql_real_escape_string($this->idyarns)."'";
 		$registros= $consulta->Execute($sql);
 		if ($fila=@mysql_fetch_array($registros)){
-			list($this->idyarns,$this->url,$this->name,$this->max1,$this->max2,$this->max3,$this->max4,$this->max5,$this->max6)=$fila;
+			list($this->idyarns,$this->url,$this->name,$this->max1,$this->max2,$this->max3,$this->max4,$this->max5,$this->max6, $this->update_time)=$fila;
 			$this->_select=1;
 		}
 	}
@@ -84,14 +85,14 @@ class base_yarns extends Base {
 	public function update(){
 		$consulta=new Consulta();
 		$sql="UPDATE yarns";
-		$sql.=" SET url='".mysql_real_escape_string($this->url)."',name='".mysql_real_escape_string($this->name)."',max1='".mysql_real_escape_string($this->max1)."',max2='".mysql_real_escape_string($this->max2)."',max3='".mysql_real_escape_string($this->max3)."',max4='".mysql_real_escape_string($this->max4)."',max5='".mysql_real_escape_string($this->max5)."',max6='".mysql_real_escape_string($this->max6)."',max7='".mysql_real_escape_string($this->max7)."',max8='".mysql_real_escape_string($this->max8)."'";
+		$sql.=" SET url='".mysql_real_escape_string($this->url)."',name='".mysql_real_escape_string($this->name)."',max1='".mysql_real_escape_string($this->max1)."',max2='".mysql_real_escape_string($this->max2)."',max3='".mysql_real_escape_string($this->max3)."',max4='".mysql_real_escape_string($this->max4)."',max5='".mysql_real_escape_string($this->max5)."',max6='".mysql_real_escape_string($this->max6)."',max7='".mysql_real_escape_string($this->max7)."',max8='".mysql_real_escape_string($this->max8)."',update_time='".mysql_real_escape_string($this->update_time)."'";
 		$sql.=" WHERE idyarns= '".$this->idyarns."'";
 		$sql.=" LIMIT 1";
 		$consulta->Execute($sql);
 	}
 	public function insert(){
 		$consulta=new Consulta();
-		$sql = "INSERT INTO yarns ( url,name,max1,max2,max3,max4,max5,max6,max7,max8 ) VALUES ( '".mysql_real_escape_string($this->url)."','".mysql_real_escape_string($this->name)."','".mysql_real_escape_string($this->max1)."','".mysql_real_escape_string($this->max2)."','".mysql_real_escape_string($this->max3)."','".mysql_real_escape_string($this->max4)."','".mysql_real_escape_string($this->max5)."','".mysql_real_escape_string($this->max6)."','".mysql_real_escape_string($this->max7)."','".mysql_real_escape_string($this->max8)."' )";
+		$sql = "INSERT INTO yarns ( url,name,max1,max2,max3,max4,max5,max6,max7,max8,update_time ) VALUES ( '".mysql_real_escape_string($this->url)."','".mysql_real_escape_string($this->name)."','".mysql_real_escape_string($this->max1)."','".mysql_real_escape_string($this->max2)."','".mysql_real_escape_string($this->max3)."','".mysql_real_escape_string($this->max4)."','".mysql_real_escape_string($this->max5)."','".mysql_real_escape_string($this->max6)."','".mysql_real_escape_string($this->max7)."','".mysql_real_escape_string($this->max8)."','".mysql_real_escape_string($this->update_time)."' )";
 		$consulta->Execute($sql);
 		$sql="SELECT LAST_INSERT_ID() AS id";
 		$registros= $consulta->Execute($sql);
@@ -103,11 +104,11 @@ class base_yarns extends Base {
 		$consulta=new Consulta();
 		$arreglo=array();
 		$objeto=new yarns();
-		$sql="SELECT A.idyarns,A.url,A.name,A.max1,A.max2,A.max3,A.max4,A.max5,A.max6, A.max7, A.max8 FROM yarns A";
+		$sql="SELECT A.idyarns,A.url,A.name,A.max1,A.max2,A.max3,A.max4,A.max5,A.max6, A.max7, A.max8, A.update_time FROM yarns A";
 		$sql.=" $where";
 		$registros= $consulta->Execute($sql);
 		while ($fila=@mysql_fetch_array($registros)){
-			list($objeto->idyarns,$objeto->url,$objeto->name,$objeto->max1,$objeto->max2,$objeto->max3,$objeto->max4,$objeto->max5,$objeto->max6, $objeto->max7, $objeto->max8)=$fila;
+			list($objeto->idyarns,$objeto->url,$objeto->name,$objeto->max1,$objeto->max2,$objeto->max3,$objeto->max4,$objeto->max5,$objeto->max6, $objeto->max7, $objeto->max8, $objeto->update_time)=$fila;
 			$objeto->_select=1;
 			$arreglo[]=$objeto;
 			$objeto=new yarns();
