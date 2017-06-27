@@ -102,6 +102,18 @@ class scrape {
 		$urls[]="https://www.strikkemekka.no/Drops-MerinoExtraFine";
 		//$urls[]="https://www.strikkemekka.no/Drops-BabyMerino";
 		$urls[]="https://www.strikkemekka.no/Drops-Karisma";
+		$urls[]="https://www.strikkemekka.no/viking-sportsragg";
+		$urls[]="https://www.strikkemekka.no/viking-superfine";
+		$urls[]="https://www.strikkemekka.no/Drops-Air";
+		$urls[]="https://www.strikkemekka.no/Drops-Alpacka";
+		$urls[]="https://www.strikkemekka.no/Drops-BabyMerino";
+		$urls[]="https://www.strikkemekka.no/Drops-Nepal";
+		$urls[]="https://www.strikkemekka.no/viking-bamboo";
+		$urls[]='https://www.strikkemekka.no/viking-bambino';
+		$urls[]='https://strikkenett.no/produkt/garn/drops/drops-karisma';
+		$urls[]='https://strikkenett.no/produkt/garn/drops/drops-baby-merino';
+		$urls[]='https://strikkenett.no/produkt/garn/drops/drops-alpaca';
+		
 		foreach($urls as $url){
 			$urlx=$url;
 			$body = $this->getpage($url);
